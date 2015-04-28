@@ -3,11 +3,12 @@ package com.kale.duitanglib.time;
 import com.kale.lib.activity.KaleBaseActivity;
 
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
 /**
  * @author Jack Tony
- * @brief
+ * @brief 倒计时操作
  * @date 2015/4/26
  */
 public class AdvancedCountdownTimerActivity extends KaleBaseActivity{
@@ -15,6 +16,9 @@ public class AdvancedCountdownTimerActivity extends KaleBaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ActivityCompat d;
+        
         // 8秒倒计时
         com.kale.lib.time.AdvancedCountdownTimer countdownTimer = new com.kale.lib.time.AdvancedCountdownTimer(8 * 1000, 1000) {
             @Override

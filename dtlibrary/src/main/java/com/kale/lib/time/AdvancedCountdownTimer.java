@@ -5,8 +5,10 @@ import android.os.Message;
 
 /**
  * Jack Tony
- * 自定义的倒计时类，没有用官方提供的CountDownTimer来实现
- * 有暂停等方法，灵活性强。在activity退出后还会持续计时，所以结束时需要判断当前activity是否在前台
+ * 自定义的倒计时类，没有用官方提供的CountDownTimer来实现.有暂停等方法，灵活性强。<br>
+ * 在activity退出后还会持续计时，所以结束时需要判断当前activity是否在前台<br>
+ * @see "http://www.cnblogs.com/tianzhijiexian/p/4459216.html"
+ * 
  * @date 2015/4/24
  */
 
@@ -17,18 +19,14 @@ public abstract class AdvancedCountdownTimer {
     private long mTotalTime;
 
     private long mRemainTime;
+
     /**
+     * @param millisInFuture    表示以毫秒为单位 倒计时的总数
      *
-     * @param millisInFuture
-     *      表示以毫秒为单位 倒计时的总数 
+     *                          例如 millisInFuture=1000 表示1秒
+     * @param countDownInterval 表示 间隔 多少微秒 调用一次 onTick 方法
      *
-     *      例如 millisInFuture=1000 表示1秒 
-     *
-     * @param countDownInterval
-     *      表示 间隔 多少微秒 调用一次 onTick 方法 
-     *
-     *      例如: countDownInterval =1000 ; 表示每1000毫秒调用一次onTick() 
-     *
+     *                          例如: countDownInterval =1000 ; 表示每1000毫秒调用一次onTick()
      */
     public AdvancedCountdownTimer(long millisInFuture, long countDownInterval) {
         mTotalTime = millisInFuture;
@@ -62,8 +60,7 @@ public abstract class AdvancedCountdownTimer {
             onFinish();
             return this;
         }
-        mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_RUN),
-                mCountdownInterval);
+        mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_RUN), mCountdownInterval);
         return this;
     }
 
@@ -86,17 +83,14 @@ public abstract class AdvancedCountdownTimer {
                     } else if (mRemainTime < mCountdownInterval) {
                         sendMessageDelayed(obtainMessage(MSG_RUN), mRemainTime);
                     } else {
-                        onTick(mRemainTime, new Long(100
-                                * (mTotalTime - mRemainTime) / mTotalTime)
-                                .intValue());
+                        onTick(mRemainTime, new Long(100 * (mTotalTime - mRemainTime) / mTotalTime).intValue());
 
-                        sendMessageDelayed(obtainMessage(MSG_RUN),
-                                mCountdownInterval);
+                        sendMessageDelayed(obtainMessage(MSG_RUN), mCountdownInterval);
                     }
                 } else if (msg.what == MSG_PAUSE) {
                 }
             }
         }
     };
-    
+
 }  

@@ -54,7 +54,7 @@ dependencies {
     // 依赖的工程
     compile project(':dtlibrary')
     //依赖的库
-    compile 'com.android.support:appcompat-v7:22.0.0'
+    compile 'com.android.support:appcompat-v7:22.1.1'
 
 
 }  

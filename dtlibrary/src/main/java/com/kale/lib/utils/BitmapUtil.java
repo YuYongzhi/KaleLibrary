@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 
 import java.io.ByteArrayOutputStream;
 
@@ -13,6 +14,8 @@ import java.io.ByteArrayOutputStream;
  * @author Jack Tony
  * @brief
  * @date 2015/4/25
+ * @see "http://www.cnblogs.com/tianzhijiexian/p/4273997.html"
+ * @see "http://www.cnblogs.com/tianzhijiexian/p/4263897.html"
  */
 public class BitmapUtil {
 
@@ -41,9 +44,6 @@ public class BitmapUtil {
 
     /**
      * Drawable转Bitmap
-     * 
-     * @param drawable
-     * @return
      */
     public static Bitmap drawable2Bitmap(Drawable drawable) {
         BitmapDrawable bd = (BitmapDrawable) drawable;
@@ -60,6 +60,21 @@ public class BitmapUtil {
             return Bitmap.createBitmap(bmp, 0, 0, bmp.getWidth(), bmp.getHeight(), matrix, true);
         }
         return bmp;
+    }
+
+
+    /**
+     * 得到bitmap的大小
+     */
+    public int getBitmapSize(Bitmap bitmap) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {    //API 19
+            return bitmap.getAllocationByteCount();
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1) {//API 12
+            return bitmap.getByteCount();
+        }
+        // 在低版本中用一行的字节x高度
+        return bitmap.getRowBytes() * bitmap.getHeight();                //earlier version
     }
 
     private static int mDesiredWidth;

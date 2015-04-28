@@ -21,4 +21,6 @@ public abstract class KaleBaseActivity extends Activity {
             throw ex;
         }
     }
+
+
 }

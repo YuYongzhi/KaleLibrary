@@ -1,25 +1,48 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
 
-    <TextView
-            android:text="@string/hello_world"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-        android:id="@+id/textView" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_below="@+id/textView"
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:inputType="phone">
+    </EditText>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:text="finish"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/finish_button" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:text="start"
+        android:id="@+id/start_button"
+        android:layout_below="@+id/editText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+
+    <!--    <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" 
+            android:src="@drawable/test01"/>-->
 
 </RelativeLayout>

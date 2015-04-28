@@ -22,6 +22,7 @@ public class GetSimplePhotoHelperActivity extends KaleBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        
         // 去选择图片
         mPhotoHelper = new GetSimplePhotoHelper(this);
         mPhotoHelper.choicePhoto(GetSimplePhotoHelper.FROM_WAY.FROM_ALBUM, null);

@@ -10,6 +10,7 @@ import android.util.Log;
  * @author Jack Tony
  * @brief 官方提供的CountDownTimer来实现
  * 在activity退出后还会持续计时，所以结束时需要判断当前activity是否在前台
+ * @see "http://www.cnblogs.com/tianzhijiexian/p/4459216.html"
  * @date 2015/4/26
  */
 public class SimpleCountDownTimerActivity extends KaleBaseActivity {

@@ -86,7 +86,7 @@ public class GetSimplePhotoActivity extends Activity {
                 //从相册中获取到图片
                 if (data != null) {
                     uri = data.getData();
-                    finishAndReturnBitmap(data, uri);
+                    finishAndReturnBitmap(uri);
                 } else {
                     finish();
                 }
@@ -94,7 +94,7 @@ public class GetSimplePhotoActivity extends Activity {
             case RequestCode.ALBUM_OK_KITKAT:
                 if (data != null) {
                     uri = Uri.parse(GetSimplePhotoUtil.getPath(this, data.getData()));
-                    finishAndReturnBitmap(data, uri);
+                    finishAndReturnBitmap(uri);
                 } else {
                     finish();
                 }
@@ -104,7 +104,7 @@ public class GetSimplePhotoActivity extends Activity {
                 // 当拍照到照片时操作
                 if (tempPicFile.exists()) {
                     uri = Uri.parse(tempPicFile.getAbsolutePath());
-                    finishAndReturnBitmap(new Intent(), uri);
+                    finishAndReturnBitmap(uri);
                 } else {
                     finish();
                 }
@@ -114,8 +114,9 @@ public class GetSimplePhotoActivity extends Activity {
         }
     }
 
-    public Bitmap finishAndReturnBitmap(Intent data, Uri uri) {
+    public Bitmap finishAndReturnBitmap(Uri uri) {
         //Logger.t(TAG).d("uri =" + uri);
+        Intent data = new Intent();
         //设置返回数据
         data.putExtra(KEY_CHOICE_PHOTO_OK_URI, uri);
         setResult(GetSimplePhotoHelper.Get_PHOTO_RESULT_OK, data);//设置给之前启动它的activity的一个返回码
