@@ -115,7 +115,7 @@ public class GetSimplePhotoActivity extends Activity {
     }
 
     public Bitmap finishAndReturnBitmap(Uri uri) {
-        //Logger.t(TAG).d("uri =" + uri);
+        //Logger.t("xxx").d("uri =" + uri);
         Intent data = new Intent();
         //设置返回数据
         data.putExtra(KEY_CHOICE_PHOTO_OK_URI, uri);

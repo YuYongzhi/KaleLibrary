@@ -1,7 +1,5 @@
-package com.kale.lib;
+package com.kale.duitanglib;
 
-
-import com.orhanobut.logger.Logger;
 
 import android.app.Application;
 
@@ -15,6 +13,7 @@ public class KaleApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Logger.init();
+        
+        
     }
 }

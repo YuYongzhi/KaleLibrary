@@ -2,51 +2,40 @@ package com.kale.duitanglib;
 
 
 import com.kale.lib.activity.KaleBaseActivity;
+import com.orhanobut.logger.Logger;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
 
 public class MainActivity extends KaleBaseActivity {
 
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //startActivity(new Intent(this, AdvancedCountdownTimerActivity.class));
+        /*PreferenceUtil util = new PreferenceUtil(this);
+        util.setIsFirstTime(true);*/
 
-        //Logger.d("w = " + WindowUtil.getWindow_WH(this)[0]);
-
-        EditText editText = getView(R.id.editText);
-        //editText.requestFocus();
-                /*InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                mInputMethodManager.showSoftInput(imageView, InputMethodManager.SHOW_FORCED);*/
-
-        Button startBtn = (Button) findViewById(R.id.start_button);
-        startBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, MainActivity.class));
-            }
-        });
-        Button finishBtn = (Button) findViewById(R.id.finish_button);
-        finishBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                //InputUtil.getInstance(MainActivity.this).hide();
-
-            }
-        });
+        
+        //startActivity(new Intent(this, GetSimplePhotoHelperActivity.class));
+        //Logger.init("-");
+        log();       
     }
+
+    private void log() {
+       //Logger.wtf("-------------what the fuck");
+        Logger.init("-");
+       Logger.e("--------+------error");
+    }
+    
+
+
 
     /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+    
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
