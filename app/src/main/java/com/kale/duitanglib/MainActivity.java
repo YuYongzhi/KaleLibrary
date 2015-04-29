@@ -2,6 +2,7 @@ package com.kale.duitanglib;
 
 
 import com.kale.lib.activity.KaleBaseActivity;
+import com.kale.lib.utils.PreferenceUtil;
 import com.orhanobut.logger.Logger;
 
 import android.os.Bundle;
@@ -21,7 +22,8 @@ public class MainActivity extends KaleBaseActivity {
         
         //startActivity(new Intent(this, GetSimplePhotoHelperActivity.class));
         //Logger.init("-");
-        log();       
+        log();
+        PreferenceUtil.getInstance(this).putBooleanByApply("key_boolean",true);
     }
 
     private void log() {
