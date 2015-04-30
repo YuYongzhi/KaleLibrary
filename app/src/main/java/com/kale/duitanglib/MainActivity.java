@@ -24,6 +24,7 @@ public class MainActivity extends KaleBaseActivity {
         //Logger.init("-");
         log();
         PreferenceUtil.getInstance(this).putBooleanByApply("key_boolean",true);
+
     }
 
     private void log() {
@@ -31,8 +32,11 @@ public class MainActivity extends KaleBaseActivity {
         Logger.init("-");
        Logger.e("--------+------error");
     }
-    
 
+
+    private StringBuffer getString() {
+        return new StringBuffer("This is a string");
+    }
 
 
     /* @Override
