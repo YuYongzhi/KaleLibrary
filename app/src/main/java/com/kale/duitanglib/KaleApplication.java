@@ -15,8 +15,5 @@ public class KaleApplication extends Application {
         super.onCreate();
         
         
-        
-        
-        
     }
 }
