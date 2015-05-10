@@ -66,7 +66,7 @@ public class BitmapUtil {
     /**
      * 得到bitmap的大小
      */
-    public int getBitmapSize(Bitmap bitmap) {
+    public static int getBitmapSize(Bitmap bitmap) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {    //API 19
             return bitmap.getAllocationByteCount();
         }

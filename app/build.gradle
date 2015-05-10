@@ -12,7 +12,7 @@ android {
         versionName "1.0"
     }
 
-    //签名
+    // 签名
     signingConfigs {
         // debug的签名
         debug {
@@ -43,18 +43,24 @@ android {
         }
     }
 
-    //这个是解决lint报错的代码
+    // 这个是解决lint报错的代码
     lintOptions {
         abortOnError false
     }
 }
 
+repositories {
+    flatDir {
+        dirs 'libs' //this way we can find the .aar file in libs folder
+    }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    // 依赖的工程
-    compile project(':dtlibrary')
-    //依赖的库
+    // 依赖的库
     compile 'com.android.support:appcompat-v7:22.1.1'
-    //cdompile project(':myapplication')
+    compile project(':dtlibrary')
+    // 依赖的aar
+    //compile(name:'kalelibrary', ext:'aar')
 }  
  

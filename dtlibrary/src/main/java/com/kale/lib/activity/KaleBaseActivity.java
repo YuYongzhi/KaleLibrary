@@ -1,6 +1,8 @@
 package com.kale.lib.activity;
 
 import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
@@ -12,8 +14,59 @@ import android.view.View;
 public abstract class KaleBaseActivity extends Activity {
 
     protected String TAG = getClass().getSimpleName();
+    protected Context mContext;
 
-    public final <E extends View> E getView(int id) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mContext = this;
+        beforeSetContentView();
+        if (getContentViewId() != 0) {
+            setContentView(getContentViewId());
+        }
+        findViews();
+        beforeSetViews();
+        setViews();
+    }
+
+    /**
+     * 在setContentView之前触发的方法
+     */
+    protected void beforeSetContentView() {
+        
+    }
+    
+    /**
+     * 如果没有布局，那么就返回0
+     *
+     * @return activity的布局文件
+     */
+    protected abstract int getContentViewId();
+    
+    /**
+     * 找到所有的views
+     */
+    protected abstract void findViews();
+
+    /**
+     * 在这里初始化设置view的各种资源，比如适配器或各种变量
+     */
+    protected abstract void beforeSetViews();
+    
+    /**
+     * 设置所有的view
+     */
+    protected abstract void setViews();
+
+
+    /**
+     * 通过泛型来简化findViewById
+     * 
+     * @param id
+     * @param <E>
+     * @return
+     */
+    protected final <E extends View> E getView(int id) {
         try {
             return (E) findViewById(id);
         } catch (ClassCastException ex) {
@@ -21,6 +74,5 @@ public abstract class KaleBaseActivity extends Activity {
             throw ex;
         }
     }
-
 
 }
