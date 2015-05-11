@@ -2,15 +2,88 @@ package com.kale.lib.utils;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Point;
 import android.view.Display;
+import android.view.WindowManager;
 
 /**
  * author Jack Tony
  *
  * @date 2015/4/26
+ * @see "http://www.cnblogs.com/tianzhijiexian/p/4113937.html"
+ * @see "http://www.cnblogs.com/tianzhijiexian/p/4127695.html"
  */
 public class WindowUtil {
+
+    /**
+     * 设置当前界面为全屏模式
+     */
+    public static void setFullScreen(Activity activity) {
+        activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+    }
+
+    /**
+     * 如果当前为全屏，那么取消全屏模式，回到正常的模式
+     */
+    public static void cancelFullScreen(Activity activity) {
+        activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    /**
+     * 判断当前手机是否是全屏
+     *
+     * @return 如果是true，那么当前就是全屏
+     */
+    public static boolean isFullScreen(Activity activity) {
+        int flag = activity.getWindow().getAttributes().flags;
+        if ((flag & WindowManager.LayoutParams.FLAG_FULLSCREEN)
+                == WindowManager.LayoutParams.FLAG_FULLSCREEN) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 判断当前屏幕是否是横屏
+     *
+     * @param activity 当前的activity
+     * @return 如果true就是竖屏
+     */
+    public static boolean isVerticalScreen(Activity activity) {
+        int flag = activity.getResources().getConfiguration().orientation;
+        if (flag == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * 获取顶部状态栏高度
+     *
+     * @return 顶部状态栏高度
+     */
+    public static int getStatusBarHeight(Context context) {
+        Class<?> c = null;
+        Object obj = null;
+        java.lang.reflect.Field field = null;
+        int x = 0;
+        int statusBarHeight = 0;
+        try {
+            c = Class.forName("com.android.internal.R$dimen");
+            obj = c.newInstance();
+            field = c.getField("status_bar_height");
+            x = Integer.parseInt(field.get(obj).toString());
+            statusBarHeight = context.getResources().getDimensionPixelSize(x);
+            return statusBarHeight;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return statusBarHeight;
+    }
 
     /**
      * 推荐的获取屏幕长宽的方式,但需要API13
@@ -27,8 +100,7 @@ public class WindowUtil {
 
     /**
      * 获取屏幕长宽的方式
-     * 
-     * @param activity
+     *
      * @return 装载了屏幕长宽的数组，int[0] = width,int[1] = height
      */
     @Deprecated
