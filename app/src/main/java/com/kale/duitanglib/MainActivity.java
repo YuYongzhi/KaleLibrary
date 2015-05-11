@@ -12,6 +12,7 @@ public class MainActivity extends KaleBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        
     }
     
     
