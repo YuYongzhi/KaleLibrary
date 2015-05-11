@@ -12,28 +12,12 @@ android {
         versionName "1.0"
     }
 
-    // 签名
-    signingConfigs {
-        // debug的签名
-        debug {
-            //storeFile file("./debug.keystore")
-        }
-
-        //你自己的keystore信息
-        release {
-            //storeFile file("./kale.keystore")
-            //storePassword "123456"
-            //keyAlias "kale"
-            //keyPassword "654321"
-        }
-    }
-    
     // 配置不同构建方式下的混淆情况
     buildTypes {
         debug {
-            minifyEnabled true // 是否混淆
-            shrinkResources true // 是否去除无效的资源文件
-            proguardFiles getDefaultProguardFile('proguard-android.txt'),'debug-proguard-rules.pro'
+            //minifyEnabled true // 是否混淆
+            //shrinkResources true // 是否去除无效的资源文件
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'),'debug-proguard-rules.pro'
         }
         release {
             minifyEnabled true // 是否混淆
