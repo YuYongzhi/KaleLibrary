@@ -5,7 +5,6 @@ import com.kale.lib.utils.IntentUtil;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -14,8 +13,7 @@ import java.io.File;
 
 /**
  * @author Jack Tony
- * @brief
- * @date 2015/4/24
+ * 2015/4/24
  */
 public class GetSimplePhotoActivity extends Activity {
 
@@ -33,11 +31,6 @@ public class GetSimplePhotoActivity extends Activity {
      * 图片的全部路径
      */
     public static final String KEY_PHOTO_PATH = "key_photo_path";
-
-    /**
-     * 裁剪好的图片uri
-     */
-    public static final String KEY_CHOICE_PHOTO_OK_URI = "key_crop_photo_uri";
 
 
     public static final int VALUE_FROM_ALBUM = 54345;
@@ -70,7 +63,6 @@ public class GetSimplePhotoActivity extends Activity {
                     // 自定义照相得到的图片的保存路径，不会自动删除
                     tempPicFile = new File(bundle.getString(KEY_PHOTO_PATH));
                 }
-                tempPicFile.delete();// 清空之前的文件
                 GetSimplePhotoUtil.choicePicFromCamera(this, tempPicFile, RequestCode.CAMERA_OK);
             }
         }
@@ -87,16 +79,12 @@ public class GetSimplePhotoActivity extends Activity {
                 if (data != null) {
                     uri = data.getData();
                     finishAndReturnBitmap(uri);
-                } else {
-                    finish();
                 }
                 break;
             case RequestCode.ALBUM_OK_KITKAT:
                 if (data != null) {
                     uri = Uri.parse(GetSimplePhotoUtil.getPath(this, data.getData()));
                     finishAndReturnBitmap(uri);
-                } else {
-                    finish();
                 }
                 break;
             // 如果是调用相机拍照时
@@ -105,22 +93,15 @@ public class GetSimplePhotoActivity extends Activity {
                 if (tempPicFile.exists()) {
                     uri = Uri.parse(tempPicFile.getAbsolutePath());
                     finishAndReturnBitmap(uri);
-                } else {
-                    finish();
                 }
                 break;
             default:
                 break;
         }
+        finish();
     }
 
-    public Bitmap finishAndReturnBitmap(Uri uri) {
-        //Logger.t("xxx").d("uri =" + uri);
-        Intent data = new Intent();
-        //设置返回数据
-        data.putExtra(KEY_CHOICE_PHOTO_OK_URI, uri);
-        setResult(GetSimplePhotoHelper.Get_PHOTO_RESULT_OK, data);//设置给之前启动它的activity的一个返回码
-        finish();
-        return null;
+    public void finishAndReturnBitmap(Uri uri) {
+        GetSimplePhotoHelper.getInstance(this).getSelectedPhoto(uri);
     }
 }
